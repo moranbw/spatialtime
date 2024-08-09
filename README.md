@@ -6,9 +6,9 @@ The idea and some conventions are heavily influenced by [rtz](https://github.com
 ## Install
 ```toml
 # use NED
-spatialtime = { version = "0.1.0", features = ["ned"] }
+spatialtime = { version = "0.1", features = ["ned"] }
 # use OSM
-spatialtime = { version = "0.1.0", features = ["osm"] }
+spatialtime = { version = "0.1", features = ["osm"] }
 ```
 ## Usage
 ```rust
