@@ -1,4 +1,8 @@
 # spatialtime
+![Crates.io Version](https://img.shields.io/crates/v/spatialtime)
+[![Documentation](https://docs.rs/spatialtime/badge.svg)](https://docs.rs/spatialtime)
+[![License:MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/moranbw/spatialtime/blob/main/LICENSE)
+
 A Rust library to lookup timezone data based on longitude and latitude. Only focused on the offline environment, in which the system clock cannot be trusted at all (thus, no DST adjustments).  Uses the [Natural Earth](https://www.naturalearthdata.com/) (**NED**) and [OpenStreetMap](https://www.openstreetmap.org/) (**OSM**) datasets, pre-processed into [flatgeobufs](https://github.com/flatgeobuf/flatgeobuf) for indexed queries.
 
 ### Inspo
