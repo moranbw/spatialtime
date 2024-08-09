@@ -1,3 +1,3 @@
 [workspace]
 resolver = "2"
-members = ["spatialtime-build", "spatialtime", "spatialtime-cli"]
+members = ["spatialtime-build", "spatialtime"]

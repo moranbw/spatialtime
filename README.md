@@ -12,7 +12,7 @@ let response = spatialtime::osm::lookup(-77.0365, 38.8977).unwrap();
  *  OSM dataset does not include offset, just tzid
  *  SpatialtimeResponse { offset: None, tzid: Some("America/New_York") }
  ***/
- let response = spatialtime::ned::lookup(149.1165, -35.3108).unwrap();
+let response = spatialtime::ned::lookup(149.1165, -35.3108).unwrap();
 /***
  *  NED dataset will always contain offset, but might not have a tzid
  *  SpatialtimeResponse { offset: Some(10.0), tzid: Some("Australia/Sydney") }
@@ -21,7 +21,7 @@ let response = spatialtime::osm::lookup(-77.0365, 38.8977).unwrap();
 ```
 
 ## OSM or NED?
-OSM dataset is much larger, coming in at 17.9MB. NED is 890KB. OSM may be more "accurate" and more "up-to-date", but which one you use is likely case-by-case.
+**OSM** dataset is much larger, coming in at 17.9MB. **NED** is 890KB. **OSM** may be more "accurate" and more "up-to-date", but which one you use is likely case-by-case.
 
 ## Data Sources
 - **NED**: [natural-earth-vector](https://github.com/nvkelso/natural-earth-vector)

@@ -1,7 +1,7 @@
 use anyhow::Result;
 use flatgeobuf::{FgbCrs, FgbWriter, FgbWriterOptions, GeometryType};
-use geojson::de::deserialize_geometry;
-use geojson::ser::serialize_geometry;
+use geojson::de::{deserialize_feature_collection_to_vec, deserialize_geometry};
+use geojson::ser::{serialize_geometry, to_feature_collection_byte_vec};
 use geozero::{geojson::GeoJsonReader, GeozeroDatasource};
 use serde::{Deserialize, Serialize};
 use std::{
@@ -29,7 +29,7 @@ fn main() -> Result<()> {
     let ned_bytes = get_ned_bytes()?;
     let osm_bytes = get_osm_bytes()?;
 
-    write_fgb(ned_bytes.clone(), "timezones_ned.fgb")?;
+    write_fgb(ned_bytes, "timezones_ned.fgb")?;
     write_fgb(osm_bytes, "timezones_osm.fgb")?;
     Ok(())
 }
@@ -39,8 +39,8 @@ fn get_ned_bytes() -> Result<Vec<u8>> {
     let mut input_byte_vec = Vec::new();
     response.read_to_end(&mut input_byte_vec)?;
     let geojson_struct: Vec<NedGeoJson> =
-        geojson::de::deserialize_feature_collection_to_vec(input_byte_vec.as_slice())?;
-    let output_byte_vec = geojson::ser::to_feature_collection_byte_vec(&geojson_struct)?;
+        deserialize_feature_collection_to_vec(input_byte_vec.as_slice())?;
+    let output_byte_vec = to_feature_collection_byte_vec(&geojson_struct)?;
     Ok(output_byte_vec)
 }
 
