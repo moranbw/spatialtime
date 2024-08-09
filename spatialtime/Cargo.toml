@@ -1,6 +1,6 @@
 [package]
 name = "spatialtime"
-version = "0.1.0"
+version = "0.1.3"
 edition = "2021"
 authors = ["Brian Moran <dev@moran.network>"]
 license = "MIT"
@@ -10,6 +10,9 @@ homepage = "https://github.com/moranbw/spatialtime"
 repository = "https://github.com/moranbw/spatialtime"
 keywords = ["time", "timezone", "geospatial", "coordinates", "gps"]
 categories = ["date-and-time"]
+
+[package.metadata."docs"."rs"]
+features = ["ned", "osm"]
 
 [lib]
 name = "spatialtime"

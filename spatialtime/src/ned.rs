@@ -2,7 +2,11 @@ use geo::Point;
 
 use crate::{shared::get_intersection, SpatialtimeError, SpatialtimeResponse};
 
+#[cfg(not(docsrs))]
 static TZ_FGB: &[u8] = include_bytes!("../../assets/timezones_ned.fgb.zst");
+
+#[cfg(docsrs)]
+static TZ_FGB: &[u8] = &[];
 
 /// Retrieve timezone data via the NED dataset for a given longitude + latitude pair.
 pub fn lookup(longitude: f64, latitude: f64) -> Result<SpatialtimeResponse, SpatialtimeError> {
