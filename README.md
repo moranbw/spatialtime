@@ -3,7 +3,13 @@ A Rust library to lookup timezone data based on longitude and latitude. Only foc
 
 ### Inspo
 The idea and some conventions are heavily influenced by [rtz](https://github.com/twitchax/rtz), which is an awesome library that is probably fine for most people. At the time of writing, however, it only worked with nightly Rust. So I have gone forward with this *much* simpler implementation for stable Rust, that fits the specific use-case I am trying to solve.
-
+## Install
+```toml
+# use NED
+spatialtime = { version = "0.1.0", features = ["ned"] }
+# use OSM
+spatialtime = { version = "0.1.0", features = ["osm"] }
+```
 ## Usage
 ```rust
 let response = spatialtime::osm::lookup(-77.0365, 38.8977).unwrap();

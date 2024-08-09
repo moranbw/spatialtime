@@ -16,7 +16,6 @@ name = "spatialtime"
 path = "src/lib.rs"
 
 [features]
-full = ["osm", "ned"]
 osm = []
 ned = []
 rebuild-assets = []

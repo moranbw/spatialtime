@@ -1,6 +1,8 @@
-//! A very simple library to lookup timezone data based on longitude and latitude.
-//! ##Usage
-#![doc = r##"
+
+/*!
+ A very simple library to lookup timezone data based on longitude and latitude (offline).
+
+## Usage
 ```
 let response = spatialtime::osm::lookup(-77.0365, 38.8977).unwrap();
 /***
@@ -13,7 +15,19 @@ let response = spatialtime::ned::lookup(149.1165, -35.3108).unwrap();
  *  SpatialtimeResponse { offset: Some(10.0), tzid: Some("Australia/Sydney") }
  ***/
 ```
-"##]
+## Crate features
+By default, this crate will not include any functionality.  You need to explicitly enable the 
+**ned** and/or **osm** features.
+* **ned** -
+  Uses the [Natural Earth](https://www.naturalearthdata.com/) dataset. Much smaller at 890KB.
+* **osm** -
+  Uses the [OpenStreetMap](https://www.openstreetmap.org/) dataset. Much larger at 17.9MB, but 
+  potentially more "accurate" and "up-to-date"
+
+*/
+ 
+
+
 #![warn(missing_docs)]
 use thiserror::Error;
 
