@@ -2,12 +2,11 @@ use geo::Point;
 
 use crate::{shared::get_intersection, SpatialtimeError, SpatialtimeResponse};
 
+static TZ_FGB: &[u8] = include_bytes!("../../assets/timezones_ned.fgb.zst");
+
 /// Retrieve timezone data via the NED dataset for a given longitude + latitude pair.
 pub fn lookup(longitude: f64, latitude: f64) -> Result<SpatialtimeResponse, SpatialtimeError> {
-    let intersection_properties = get_intersection(
-        include_bytes!("../../assets/timezones_ned.fgb.zst"),
-        Point::new(longitude, latitude),
-    )?;
+    let intersection_properties = get_intersection(TZ_FGB, Point::new(longitude, latitude))?;
     let tzid = {
         match intersection_properties.get("tzid") {
             Some(tzid) => Some(tzid.to_string()),
