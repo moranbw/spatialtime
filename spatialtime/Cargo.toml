@@ -1,0 +1,11 @@
+[package]
+name = "spatialtime"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+flatgeobuf = "4.2.1"
+geo = "0.28.0"
+geozero = "0.13.0"
+thiserror = "1.0.63"
+zstd = "0.13.2"
