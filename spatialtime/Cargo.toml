@@ -11,6 +11,10 @@ repository = "https://github.com/moranbw/spatialtime"
 keywords = ["time", "timezone", "geospatial", "coordinates", "gps"]
 categories = ["date-and-time"]
 
+[lib]
+name = "spatialtime"
+path = "src/lib.rs"
+
 [dependencies]
 flatgeobuf = "4.2.1"
 geo = "0.28.0"
