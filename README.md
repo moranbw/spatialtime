@@ -25,4 +25,4 @@ let response = spatialtime::ned::lookup(149.1165, -35.3108).unwrap();
 
 ## Data Sources
 - **NED**: [natural-earth-vector](https://github.com/nvkelso/natural-earth-vector)
-- **OSM**: [timezone-boundary-builder](https://github.com/nvkelso/natural-earth-vector)
+- **OSM**: [timezone-boundary-builder](https://github.com/evansiroky/timezone-boundary-builder)

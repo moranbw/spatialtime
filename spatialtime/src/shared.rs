@@ -3,28 +3,10 @@ use std::{collections::HashMap, io::BufReader};
 use flatgeobuf::{FallibleStreamingIterator, FeatureProperties, FgbReader};
 use geo::{Geometry, Intersects, Point};
 use geozero::ToGeo;
-use thiserror::Error;
 
-#[derive(Error, Debug)]
-pub enum SpatialtimeError {
-    #[error("Error decompressing: {0}")]
-    Zst(#[from] std::io::Error),
-    #[error("Error reading flatgeobuf: {0}")]
-    Fgb(#[from] flatgeobuf::Error),
-    #[error("Error parsing with geozero: {0}")]
-    Geozero(#[from] geozero::error::GeozeroError),
-    #[error("Error fetching properties: {0}")]
-    Properties(String),
-    #[error("No intersection found!")]
-    NoIntersection,
-}
+use crate::SpatialtimeError;
 
-#[derive(Clone, Debug)]
-pub struct SpatialtimeResponse {
-    pub offset: Option<f64>,
-    pub tzid: Option<String>,
-}
-
+/// Decompress data, read as flatgeobuf, then determine if it intersects with input point. If so, return properties.
 pub fn get_intersection(
     bytes: &[u8],
     point: Point,

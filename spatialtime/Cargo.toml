@@ -2,6 +2,14 @@
 name = "spatialtime"
 version = "0.1.0"
 edition = "2021"
+authors = ["Brian Moran <dev@moran.network>"]
+license = "MIT"
+description = "A simple library to lookup longitude + latitude pairs, using flatgeobufs."
+readme = "../README.md"
+homepage = "https://github.com/moranbw/spatialtime"
+repository = "https://github.com/moranbw/spatialtime"
+keywords = ["time", "timezone", "geospatial", "coordinates", "gps"]
+categories = ["date-and-time"]
 
 [dependencies]
 flatgeobuf = "4.2.1"
