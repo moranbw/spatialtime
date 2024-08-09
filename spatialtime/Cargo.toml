@@ -17,3 +17,15 @@ geo = "0.28.0"
 geozero = "0.13.0"
 thiserror = "1.0.63"
 zstd = "0.13.2"
+
+[build-dependencies]
+anyhow = "1.0.86"
+flatgeobuf = "4.2.1"
+geo-types = "0.7.13"
+geojson = "0.24.1"
+geozero = { version = "0.13.0", features = [ "default", "with-csv" ] }
+reqwest = { version = "0.12.5", features = ["blocking"] }
+serde = "1.0.205"
+serde_json = "1.0.122"
+zip = "2.1.6"
+zstd = "0.13.2"
