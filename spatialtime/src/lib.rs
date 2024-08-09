@@ -1,19 +1,30 @@
-//! A Rust library to lookup timezone data based on longitude and latitude.
-//! Only focused on the offline environment, in which the system clock cannot be trusted at all (thus, no DST adjustments).
-//! Uses the [Natural Earth](https://www.naturalearthdata.com/) (**NED**) and [OpenStreetMap](https://www.openstreetmap.org/) (**OSM**) datasets, 
-//! pre-processed into [flatgeobufs](https://github.com/flatgeobuf/flatgeobuf) for indexed queries.
-
+//! A very simple library to lookup timezone data based on longitude and latitude.
+//! ##Usage
+#![doc = r##"
+```
+let response = spatialtime::osm::lookup(-77.0365, 38.8977).unwrap();
+/***
+ *  OSM dataset does not include offset, just tzid
+ *  SpatialtimeResponse { offset: None, tzid: Some("America/New_York") }
+ ***/
+let response = spatialtime::ned::lookup(149.1165, -35.3108).unwrap();
+/***
+ *  NED dataset will always contain offset, but might not have a tzid
+ *  SpatialtimeResponse { offset: Some(10.0), tzid: Some("Australia/Sydney") }
+ ***/
+```
+"##]
 #![warn(missing_docs)]
-
 use thiserror::Error;
 
-
+/// Lookup using the NED dataset
+#[cfg(feature = "ned")]
+pub mod ned;
+/// Lookup using OSM dataset
+#[cfg(feature = "osm")]
+pub mod osm;
 /// Shared functionlaity and structs. used internally
 mod shared;
-/// Lookup using OSM dataset
-pub mod osm;
-/// Lookup using the NED dataset
-pub mod ned;
 
 /// Custom errors
 #[derive(Error, Debug)]

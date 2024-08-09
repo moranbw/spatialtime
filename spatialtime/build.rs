@@ -1,16 +1,14 @@
-use anyhow::Result;
+use anyhow::{anyhow, Result};
 use flatgeobuf::{FgbCrs, FgbWriter, FgbWriterOptions, GeometryType};
 use geojson::de::{deserialize_feature_collection_to_vec, deserialize_geometry};
 use geojson::ser::{serialize_geometry, to_feature_collection_byte_vec};
 use geozero::{geojson::GeoJsonReader, GeozeroDatasource};
 use serde::{Deserialize, Serialize};
+use std::env;
 use std::{
     fs::File,
     io::{BufWriter, Read, Write},
 };
-
-static OSM_ADDRESS: &str = "https://github.com/evansiroky/timezone-boundary-builder/releases/latest/download/timezones-with-oceans-now.geojson.zip";
-static NED_ADDRESS: &str = "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_10m_time_zones.geojson";
 
 #[derive(Deserialize, Serialize)]
 struct NedGeoJson {
@@ -25,12 +23,32 @@ struct NedGeoJson {
     tzid: Option<String>,
 }
 
-fn main() -> Result<()> {
-    let ned_bytes = get_ned_bytes()?;
-    let osm_bytes = get_osm_bytes()?;
+static OSM_ADDRESS: &str = "https://github.com/evansiroky/timezone-boundary-builder/releases/latest/download/timezones-with-oceans-now.geojson.zip";
+static NED_ADDRESS: &str = "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_10m_time_zones.geojson";
 
-    write_fgb(ned_bytes, "timezones_ned.fgb")?;
-    write_fgb(osm_bytes, "timezones_osm.fgb")?;
+fn main() -> Result<()> {
+    let rebuild_assets = cfg!(feature = "rebuild-assets");
+    let cwd = env::current_dir()?;
+    let parent_path = cwd
+        .parent()
+        .ok_or_else(|| anyhow!("Could not get parent path?"))?;
+    std::fs::create_dir_all(parent_path.join("assets"))?;
+
+    if cfg!(feature = "ned") {
+        let asset_path = parent_path.join("assets").join("timezones_ned.fgb.zst");
+        if !asset_path.exists() || rebuild_assets {
+            let ned_bytes = get_ned_bytes()?;
+            write_fgb(ned_bytes, "timezones_ned.fgb")?;
+        }
+    }
+
+    if cfg!(feature = "osm") {
+        let asset_path = parent_path.join("assets").join("timezones_osm.fgb.zst");
+        if !asset_path.exists() || rebuild_assets {
+            let osm_bytes = get_osm_bytes()?;
+            write_fgb(osm_bytes, "timezones_osm.fgb")?;
+        }
+    }
     Ok(())
 }
 

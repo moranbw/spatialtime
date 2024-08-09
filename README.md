@@ -6,7 +6,6 @@ The idea and some conventions are heavily influenced by [rtz](https://github.com
 
 ## Usage
 ```rust
-
 let response = spatialtime::osm::lookup(-77.0365, 38.8977).unwrap();
 /***
  *  OSM dataset does not include offset, just tzid
@@ -17,7 +16,6 @@ let response = spatialtime::ned::lookup(149.1165, -35.3108).unwrap();
  *  NED dataset will always contain offset, but might not have a tzid
  *  SpatialtimeResponse { offset: Some(10.0), tzid: Some("Australia/Sydney") }
  ***/
-
 ```
 
 ## OSM or NED?
