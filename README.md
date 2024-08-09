@@ -1,5 +1,5 @@
 # spatialtime
-![Crates.io Version](https://img.shields.io/crates/v/spatialtime)
+[![Crates.io Version](https://img.shields.io/crates/v/spatialtime)](https://crates.io/crates/spatialtime)
 [![Documentation](https://docs.rs/spatialtime/badge.svg)](https://docs.rs/spatialtime)
 [![License:MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/moranbw/spatialtime/blob/main/LICENSE)
 
