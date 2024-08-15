@@ -7,12 +7,12 @@
 let response = spatialtime::osm::lookup(-77.0365, 38.8977).unwrap();
 /***
  *  OSM dataset does not include offset, just tzid
- *  SpatialtimeResponse { offset: None, tzid: Some("America/New_York") }
+ *  OsmResponse { tzid: "America/New_York" }
  ***/
 let response = spatialtime::ned::lookup(149.1165, -35.3108).unwrap();
 /***
  *  NED dataset will always contain offset, but might not have a tzid
- *  SpatialtimeResponse { offset: Some(10.0), tzid: Some("Australia/Sydney") }
+ *  NedResponse { offset: 10.0, tzid: Some("Australia/Sydney") }
  ***/
 ```
 ## Crate features
@@ -58,13 +58,4 @@ pub enum SpatialtimeError {
     /// No instersection found for longitude + latitude pair
     #[error("No intersection found!")]
     NoIntersection,
-}
-
-/// Data that is returned
-#[derive(Clone, Debug)]
-pub struct SpatialtimeResponse {
-    /// Actual offset from UTC. Only available in NED.
-    pub offset: Option<f64>,
-    /// TZID string such as `America/New_York`. Will exist in OSM, may not in NED.
-    pub tzid: Option<String>,
 }

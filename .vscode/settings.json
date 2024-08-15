@@ -1,3 +1,7 @@
 {
-    "rust-analyzer.cargo.features": ["ned", "osm"]
+  "rust-analyzer.cargo.features": ["ned", "osm"],
+  "rust-analyzer.linkedProjects": [
+    "spatialtime/Cargo.toml",
+    "build-assets/Cargo.toml"
+  ]
 }
