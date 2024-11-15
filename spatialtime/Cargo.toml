@@ -1,6 +1,6 @@
 [package]
 name = "spatialtime"
-version = "0.2.0"
+version = "0.2.1"
 edition = "2021"
 authors = ["Brian Moran <dev@moran.network>"]
 license = "MIT"
@@ -24,12 +24,15 @@ ned = []
 rebuild-assets = []
 
 [dependencies]
-flatgeobuf = "4.2.1"
-geo = "0.28.0"
-geozero = "0.13.0"
+flatgeobuf = "4.4.0"
+geo = "0.29.1"
+geozero = "0.14.0"
 thiserror = "1.0.63"
 zstd = "0.13.2"
 
 [build-dependencies]
 anyhow = "1.0.86"
-reqwest = { version = "0.12.5", features = ["blocking"] }
+reqwest = { version = "0.12.5", features = [
+    "blocking",
+    "rustls-tls",
+], default-features = false }

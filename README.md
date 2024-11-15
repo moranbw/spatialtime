@@ -34,3 +34,6 @@ let response = spatialtime::ned::lookup(149.1165, -35.3108).unwrap();
 ## Data Sources
 - **NED**: [natural-earth-vector](https://github.com/nvkelso/natural-earth-vector)
 - **OSM**: [timezone-boundary-builder](https://github.com/evansiroky/timezone-boundary-builder)
+
+### Note
+If developing / running / building from a musl environment (like Alpine), you may need to set `RUSTFLAGS="-Ctarget-feature=-crt-static"`. This only seems necessary for `build-assets` at this time. More info here: [https://rust-lang.github.io/rfcs/1721-crt-static.html](https://rust-lang.github.io/rfcs/1721-crt-static.html)
