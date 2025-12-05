@@ -1,6 +1,6 @@
 [package]
 name = "spatialtime"
-version = "0.2.3"
+version = "0.2.4"
 edition = "2021"
 authors = ["Brian Moran <dev@moran.network>"]
 license = "MIT"
@@ -25,7 +25,7 @@ rebuild-assets = []
 
 [dependencies]
 flatgeobuf = { version = "4.6", default-features = false }
-geo = "0.30"
+geo = "0.32"
 geozero = "0.14.0"
 thiserror = "1.0"
 zstd = "0.13"
