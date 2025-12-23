@@ -10,18 +10,20 @@ The idea and some conventions are heavily influenced by [rtz](https://github.com
 ## Install
 ```toml
 # use NED
-spatialtime = { version = "0.2", features = ["ned"] }
+spatialtime = { version = "0.3", features = ["ned"] }
 # use OSM
-spatialtime = { version = "0.2", features = ["osm"] }
+spatialtime = { version = "0.3", features = ["osm"] }
 ```
 ## Usage
 ```rust
-let response = spatialtime::osm::lookup(-77.0365, 38.8977).unwrap();
+let reader = spatialtime::osm::OsmReader::new().unwrap();
+let response = reader.lookup(-77.0365, 38.8977).unwrap();
 /***
  *  OSM dataset does not include offset, just tzid
  *  OsmResponse { tzid: "America/New_York" }
  ***/
-let response = spatialtime::ned::lookup(149.1165, -35.3108).unwrap();
+let reader = spatialtime::ned::NedReader::new().unwrap();
+let response = reader.lookup(149.1165, -35.3108).unwrap();
 /***
  *  NED dataset will always contain offset, but might not have a tzid
  *  NedResponse { offset: 10.0, tzid: Some("Australia/Sydney") }

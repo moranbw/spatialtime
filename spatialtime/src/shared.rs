@@ -6,14 +6,12 @@ use geozero::ToGeo;
 
 use crate::SpatialtimeError;
 
-/// Decompress data, read as flatgeobuf, then determine if it intersects with input point. If so, return properties.
+/// Takes in uncompressed flatgeobuf, creates reader, then determine if it intersects with input point. If so, return properties.
 pub fn get_intersection(
     bytes: &[u8],
     point: Point,
 ) -> Result<HashMap<String, String>, SpatialtimeError> {
-    let mut fgb_bytes = Vec::new();
-    zstd::stream::copy_decode(bytes, &mut fgb_bytes).map_err(|e| SpatialtimeError::Zst(e))?;
-    let mut reader = BufReader::new(fgb_bytes.as_slice());
+    let mut reader = BufReader::new(bytes);
     let fgb = FgbReader::open(&mut reader).map_err(|e| SpatialtimeError::Fgb(e))?;
     let mut fgp_seq = fgb
         .select_bbox_seq(point.x(), point.y(), point.x(), point.y())
